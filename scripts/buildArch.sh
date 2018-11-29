@@ -1,5 +1,7 @@
 #! /bin/bash
 
+mkdir -p output
+mkdir -p build
 export ARCH_DIR=$(realpath output/${1})
 export PROOT_DIR=$(realpath build/proot)
 export TERMUX_PACKAGES_DIR=build/termux-packages
@@ -49,5 +51,9 @@ sudo PROOT_DIR=$PROOT_DIR ./build-package.sh -f -a $TERMUX_ARCH libtalloc
 cp /data/data/com.termux/files/usr/lib/libtalloc.so.2 $ARCH_DIR/libtalloc.so.2
 sudo PROOT_DIR=$PROOT_DIR ./build-package.sh -f -a $TERMUX_ARCH proot
 cp /data/data/com.termux/files/usr/bin/proot $ARCH_DIR/proot
+sudo PROOT_DIR=$PROOT_DIR ./build-package.sh -f -a $TERMUX_ARCH dropbear
+cp /data/data/com.termux/files/usr/bin/dbclient $ARCH_DIR/dbclient
+cp /data/data/com.termux/files/usr/lib/libtermux-auth.so $ARCH_DIR/libtermux-auth.so
+cp /data/data/com.termux/files/usr/lib/libutil.so $ARCH_DIR/libutil.so
 #sudo PROOT_DIR=$PROOT_DIR ./build-package.sh -f -a $TERMUX_ARCH busybox
 #cp /data/data/com.termux/files/usr/bin/busybox $ARCH_DIR/busybox
